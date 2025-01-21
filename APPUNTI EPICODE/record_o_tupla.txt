@@ -1,0 +1,47 @@
+Un record in una tabella di un database PostgreSQL, come in qualsiasi altro sistema di gestione di database relazionale, è essenzialmente una riga della tabella. Ogni record rappresenta un singolo insieme di dati correlati, definito dalle colonne della tabella. In termini di database, un record è noto anche come "riga" o "tupla".
+
+Caratteristiche di un record:
+
+1. Unicità: Ogni record in una tabella è unico rispetto ad una chiave primaria definita nella tabella. La chiave primaria è una colonna o un insieme di colonne che identificano univocamente ogni record nella tabella.
+
+2. Struttura: Un record è composto da campi (o attributi), che corrispondono alle colonne della tabella. Ogni campo contiene un dato che rappresenta un aspetto dell'entità descritta dalla tabella.
+
+3. Consistenza del Tipo di Dato: Ogni campo in un record deve seguire il tipo di dato definito per la sua colonna nella tabella.
+
+Esempi di record in una tabella PostgreSQL:
+
+Consideriamo una tabella immaginaria `utenti` in un database PostgreSQL con le seguenti colonne: `id`, `nome`, `email` e `età`.
+
+La tabella `utenti` potrebbe essere definita come segue (in SQL):
+
+sql
+CREATE TABLE utenti (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100),
+    età INT
+);
+
+
+Esempi di record in questa tabella potrebbero essere:
+
+1. Record 1:
+   - `id`: 1
+   - `nome`: "Mario Rossi"
+   - `email`: "mario.rossi@example.com"
+   - `età`: 30
+
+2. Record 2:
+   - `id`: 2
+   - `nome`: "Luca Bianchi"
+   - `email`: "luca.bianchi@example.com"
+   - `età`: 25
+
+Questi record possono essere inseriti nella tabella `utenti` utilizzando l'istruzione SQL `INSERT`:
+
+sql
+INSERT INTO utenti (nome, email, età) VALUES ('Mario Rossi', 'mario.rossi@example.com', 30);
+INSERT INTO utenti (nome, email, età) VALUES ('Luca Bianchi', 'luca.bianchi@example.com', 25);
+
+
+In questo esempio, ogni riga della tabella `utenti` è un record e rappresenta una persona con attributi come nome, email e età.

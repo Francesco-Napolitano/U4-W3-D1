@@ -1,0 +1,15 @@
+Il Data Manipulation Language (DML) è il sottoinsieme di SQL usato per recuperare, inserire, modificare e cancellare dati da database. Ecco una panoramica degli operatori DML e degli scenari di utilizzo con esempi:
+
+- SELECT: Usato per recuperare dati da una o più tabelle.
+  - _Esempio_: `SELECT nome, età FROM utenti;`
+  
+- INSERT: Per inserire nuovi dati nelle tabelle.
+  - _Esempio_: `INSERT INTO utenti (nome, età) VALUES ('Mario', 30);`
+  
+- UPDATE: Modifica i dati esistenti in una tabella.
+  - _Esempio_: `UPDATE utenti SET età = età + 1 WHERE nome = 'Mario';`
+  
+- DELETE: Rimuove i dati da una tabella.
+  - _Esempio_: `DELETE FROM utenti WHERE nome = 'Mario';`
+
+Ogni operatore ha vari clausole e opzioni che possono essere utilizzate per affinare l'operazione, come `WHERE` per filtrare i dati, o `JOIN` per combinare dati da più tabelle. La scelta dell'operatore DML dipende dall'azione che si desidera eseguire sul database.

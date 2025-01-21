@@ -1,0 +1,20 @@
+Perchè definiamo le chiavi primarie e le chiavi esterne come gli "estremi della relazione" in un database relazionale. 
+Questa terminologia aiuta a comprendere il ruolo fondamentale che queste chiavi svolgono nel definire e gestire le relazioni tra le tabelle. 
+
+- Chiave Primaria (Primary Key): Un attributo o un insieme di attributi che identificano univocamente ogni record in una tabella. La chiave primaria è un estremo della relazione, poiché rappresenta il punto di identificazione unico per ogni riga nella sua tabella.
+
+- Chiave Esterna (Foreign Key): Un attributo o un insieme di attributi in una tabella che è collegato alla chiave primaria di un'altra tabella. La chiave esterna è l'altro estremo della relazione, stabilendo un link o un riferimento a un record in un'altra tabella. Questo permette di mantenere l'integrità referenziale tra le tabelle, assicurando che i dati corrispondano e siano coerenti tra di loro.
+
+Esempio pratico:
+
+Consideriamo due tabelle: `utenti` e `ordini`. 
+
+- La tabella `utenti` ha una chiave primaria `id_utente`.
+- La tabella `ordini` ha la sua chiave primaria `id_ordine` e una chiave esterna `id_utente_fk` che riferisce alla chiave primaria della tabella `utenti`.
+
+In questo caso:
+
+- `id_utente` in `utenti` è una chiave primaria, un estremo della relazione.
+- `id_utente_fk` in `ordini` è una chiave esterna che riferisce a `id_utente`, l'altro estremo della relazione.
+
+Questa configurazione permette di stabilire una relazione tra un utente e i suoi ordini: ogni record nella tabella `ordini` è collegato a un record specifico nella tabella `utenti`, garantendo che ogni ordine sia associato correttamente all'utente che l'ha effettuato.

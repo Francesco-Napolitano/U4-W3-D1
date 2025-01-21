@@ -1,0 +1,33 @@
+Nella creazione di database, tabelle e attributi in PostgreSQL, seguire una convenzione di denominazione coerente è fondamentale per la leggibilità, la manutenibilità e l'evitamento di conflitti. Ecco alcune linee guida generali:
+
+Si consiglia di preferire lo snake case. Lo snake case è una convenzione di scrittura in cui le parole o le frasi sono separate da underscore (_) anziché spazi e tutto è in lettere minuscole.
+
+1. Database:
+   - Usa nomi significativi e descrittivi.
+   - Evita l'uso di caratteri speciali e spazi.
+   - Utilizza underscore (`_`) per separare le parole se necessario.
+
+2. Tabelle:
+   - I nomi delle tabelle dovrebbero essere al plurale (es: `utenti`, `prodotti`).
+   - Preferisci lowercase per evitare problemi di case-sensitivity.
+   - Includi prefissi se necessario per indicare uno schema o un modulo (es: `auth_utenti`, `inv_fatture`).
+
+3. Attributi:
+   - Usa nomi di attributi chiari e descrittivi.
+   - Mantieni la consistenza nel naming (es: `nome_utente`, `prezzo_prodotto`).
+   - Preferisci singolare e lowercase.
+   - Per chiavi esterne, usa il pattern `nome_tabella_singolare_id` (es: `utente_id`).
+
+4. Chiavi Primarie:
+   - Usa semplicemente `id` o un nome specifico seguito da `_id` (es: `utente_id`).
+
+5. Vincoli:
+   - Per i vincoli, usa prefissi come `pk_` per le chiavi primarie, `fk_` per le chiavi esterne, `chk_` per i check, e `un_` per i vincoli di unicità, seguiti dal nome della tabella e del campo (es: `pk_utente_id`, `fk_utente_id`).
+
+6. Convenzioni di Casing:
+   - PostgreSQL tratta i nomi con uppercase e lowercase in modo diverso; per evitare confusione, adotta una convenzione uniforme, preferibilmente lowercase.
+
+7. Evita Parole Riservate:
+   - Non usare parole riservate SQL per i nomi di tabelle o colonne.
+
+Ricorda che queste sono linee guida e non regole fisse; l'importante è scegliere una convenzione e aderirvi in modo coerente. La documentazione ufficiale di PostgreSQL fornisce un elenco completo di parole riservate che dovrebbero essere evitate nei nomi.

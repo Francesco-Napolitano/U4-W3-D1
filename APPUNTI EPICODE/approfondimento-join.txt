@@ -1,0 +1,44 @@
+I quattro tipi di JOIN in SQL sono utilizzati per combinare righe tra due o più tabelle, basate su una colonna relazionale comune. Ecco una spiegazione di ciascun tipo di JOIN con esempi pratici:
+
+1. INNER JOIN: Restituisce le righe quando c'è almeno una corrispondenza in ENTRAMBE le tabelle. Se ci sono righe in una tabella che non hanno corrispondenti nella seconda tabella, queste righe non verranno visualizzate nel risultato.
+
+   Esempio Pratico:
+   sql
+   SELECT ordini.id_ordine, clienti.nome_cliente
+   FROM ordini
+   INNER JOIN clienti ON ordini.id_cliente = clienti.id_cliente;
+   
+   Questo restituirà solo gli ordini che hanno un cliente corrispondente.
+
+2. LEFT OUTER JOIN (o semplicemente LEFT JOIN): Restituisce TUTTE le righe dalla tabella di sinistra e le righe corrispondenti dalla tabella di destra. Se non c'è match, i risultati sono NULL nella parte di destra.
+
+   Esempio Pratico:
+   sql
+   SELECT dipendenti.nome, progetti.nome_progetto
+   FROM dipendenti
+   LEFT JOIN assegnazioni ON dipendenti.id_dipendente = assegnazioni.id_dipendente;
+   
+   Questo mostrerà tutti i dipendenti, inclusi quelli che non sono assegnati a nessun progetto.
+
+3. RIGHT OUTER JOIN (o semplicemente RIGHT JOIN): Funziona al contrario del LEFT JOIN. Restituisce TUTTE le righe dalla tabella di destra e le righe corrispondenti dalla tabella di sinistra. Se non c'è match, i risultati sono NULL nella parte di sinistra.
+
+   Esempio Pratico:
+   sql
+   SELECT ordini.id_ordine, spedizioni.dati_spedizione
+   FROM ordini
+   RIGHT JOIN spedizioni ON ordini.id_spedizione = spedizioni.id_spedizione;
+   
+   Questo mostrerà tutte le spedizioni, inclusi i dettagli per gli ordini che non sono stati ancora spediti.
+
+4. FULL OUTER JOIN: Combina le funzionalità di LEFT JOIN e RIGHT JOIN. Restituisce le righe quando c'è una corrispondenza in una delle tabelle. Se non c'è match, i risultati saranno NULL su entrambi i lati.
+
+   Esempio Pratico:
+   sql
+   SELECT studenti.nome, corsi.descrizione
+   FROM studenti
+   FULL OUTER JOIN iscrizioni ON studenti.id_studente = iscrizioni.id_studente
+   FULL OUTER JOIN corsi ON iscrizioni.id_corso = corsi.id_corso;
+   
+   Questo mostrerà tutti gli studenti e tutti i corsi, compresi gli studenti che non sono iscritti a nessun corso e i corsi a cui nessuno studente è iscritto.
+
+Ogni tipo di JOIN è utilizzato a seconda di ciò che si desidera includere nel set di risultati: se si desidera avere tutti i record da una tabella e solo i corrispondenti dall'altra, si utilizza un LEFT o RIGHT JOIN; se si desidera solo i record corrispondenti da entrambe le tabelle, si utilizza un INNER JOIN; se si desidera tutti i record da entrambe le tabelle, si utilizza un FULL OUTER JOIN.

@@ -1,0 +1,68 @@
+L'operatore `LIKE` in SQL viene utilizzato per cercare pattern di testo in una colonna. Ecco diversi esempi di come puoi utilizzare `LIKE` nelle tue query:
+
+1. Percentuale (%) per qualsiasi sequenza di caratteri:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '%testo%';
+   
+   Questo troverà tutte le righe dove `colonna`(colonna = attributo/nome della colonna) contiene 'testo' in qualsiasi posizione.
+
+2. Percentuale (%) all'inizio:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '%testo';
+   
+   Questo troverà tutte le righe dove `colonna` termina con 'testo'.
+
+3. Percentuale (%) alla fine:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE 'testo%';
+   
+   Questo troverà tutte le righe dove `colonna` inizia con 'testo'.
+
+4. Underscore (_) per un singolo carattere:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '_testo%';
+   
+   Questo troverà tutte le righe dove `colonna` inizia con un qualsiasi carattere seguito da 'testo'.
+
+5. Underscore (_) per più caratteri singoli:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE 'te_to';
+   
+   Questo troverà tutte le righe dove `colonna` ha 'te', seguito da un qualsiasi carattere, e poi 'to'.
+
+6. Combinazione di % e _:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '%te_to%';
+   
+   Questo troverà tutte le righe dove `colonna` contiene 'te', seguito da un qualsiasi carattere e poi 'to', con qualsiasi cosa prima e dopo.
+
+7. Escape di % e _:
+   Se vuoi cercare letteralmente i caratteri `%` o `_`, devi utilizzare un carattere di escape (come `\` o un altro carattere specificato con `ESCAPE`).
+
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '%25\%';
+   
+   Con `ESCAPE`:
+   sql
+   SELECT * FROM tabella WHERE colonna LIKE '%25!%' ESCAPE '!';
+   
+   Questi troveranno tutte le righe dove `colonna` contiene un letterale `%`.
+
+L'operatore `LIKE` è molto potente e versatile, e può essere utilizzato per creare una varietà di filtri basati su testo nelle query SQL.
+
+Approfondimento Escape:
+Il carattere percentuale (%), è normalmente usato come wildcard in un'operazione `LIKE`. Di default, `%` in `LIKE` significa "qualsiasi sequenza di caratteri", ma se vuoi cercare la percentuale come un carattere letterale, devi utilizzare un carattere di escape.
+
+In PostgreSQL, il backslash `\` è il carattere di escape predefinito, quindi la query:
+sql
+SELECT * FROM tabella WHERE colonna LIKE '%25\%';
+
+sta cercando valori nella colonna `colonna` che contengono il testo '25%' (dove `%` è un vero carattere percentuale, non un wildcard). La parte '%25' significa "qualsiasi cosa seguita da 25", e `\%` significa un vero carattere percentuale.
+
+Tuttavia, in alcuni contesti o a seconda della configurazione del server SQL, il backslash potrebbe non funzionare come carattere di escape. In questi casi, è possibile definire un proprio carattere di escape utilizzando la clausola `ESCAPE`. Nella seconda query:
+sql
+SELECT * FROM tabella WHERE colonna LIKE '%25!%' ESCAPE '!';
+
+il simbolo `!` viene designato come nuovo carattere di escape. Quindi, `!%` significa che stai cercando il carattere percentuale letterale nella stringa, e non il wildcard. Pertanto, questa query seleziona righe dove `colonna` contiene il testo '25%'.
+
+Ricorda che l'utilizzo del carattere di escape è importante quando il pattern che stai cercando include simboli utilizzati normalmente come wildcard in SQL (`%` e `_`), ma che in quel contesto specifico devono essere interpretati letteralmente.

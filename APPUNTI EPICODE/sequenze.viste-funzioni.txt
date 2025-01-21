@@ -1,0 +1,74 @@
+Sequenze
+
+Una sequenza in PostgreSQL è un oggetto del database utilizzato per generare numeri sequenziali, che è spesso usato per creare valori unici per chiavi primarie.
+
+Esempio di Creazione e Uso di una Sequenza:
+
+sql
+-- Creazione di una sequenza
+CREATE SEQUENCE seq_utente_id
+    START WITH 1
+    INCREMENT BY 1;
+
+-- Creazione di una tabella che usa la sequenza
+CREATE TABLE utenti (
+    utente_id INT DEFAULT nextval('seq_utente_id'),
+    nome VARCHAR(100)
+);
+
+-- Inserimento di dati nella tabella
+INSERT INTO utenti (nome) VALUES ('Mario');
+
+
+In questo esempio, viene creata una sequenza `seq_utente_id` che inizia da 1 e si incrementa di 1. La colonna `utente_id` nella tabella `utenti` utilizza questa sequenza per generare automaticamente un nuovo ID ogni volta che viene inserita una nuova riga.
+
+Viste (Views)
+
+Una vista in PostgreSQL è una rappresentazione tabellare di uno o più tabelle. È utile per semplificare query complesse, proteggere i dati sensibili o rappresentare una versione filtrata o aggregata dei dati.
+
+Esempio di Creazione di una Vista:
+
+sql
+-- Supponendo che la tabella utenti esista già
+CREATE VIEW vista_utenti_attivi AS
+SELECT utente_id, nome
+FROM utenti
+WHERE attivo = TRUE;
+
+
+In questo esempio, `vista_utenti_attivi` è una vista che mostra solo gli utenti attivi dalla tabella `utenti`.
+
+Funzioni
+
+Le funzioni in PostgreSQL permettono di incapsulare operazioni complesse in un blocco di codice riutilizzabile. Possono essere scritte in vari linguaggi, come SQL, PL/pgSQL (un linguaggio specifico di PostgreSQL), Python, e altri.
+
+Esempio di Funzione PL/pgSQL:
+
+sql
+-- Creazione di una funzione che conta gli utenti attivi
+CREATE OR REPLACE FUNCTION conta_utenti_attivi()
+RETURNS INTEGER AS $$
+DECLARE
+    contatore INTEGER;
+BEGIN
+    SELECT COUNT(*)
+    INTO contatore
+    FROM utenti
+    WHERE attivo = TRUE;
+    RETURN contatore;
+END;
+$$ LANGUAGE plpgsql;
+
+-- Uso della funzione
+SELECT conta_utenti_attivi();
+
+
+Questa funzione, `conta_utenti_attivi`, restituisce il numero di utenti attivi nella tabella `utenti`.
+
+Note
+
+- Sequenze sono utili per garantire univocità e sono spesso utilizzate per generare automaticamente valori di chiavi primarie.
+- Viste offrono un modo per astrarre query complesse e presentare i dati in modo semplificato o filtrato.
+- Funzioni sono potenti strumenti per incapsulare logiche complesse, operazioni ripetitive e possono migliorare la manutenibilità del codice del database.
+
+Questi esempi forniscono un'idea base su come si possono utilizzare sequenze, viste e funzioni in PostgreSQL per gestire i dati e la logica del database in modo più efficace.

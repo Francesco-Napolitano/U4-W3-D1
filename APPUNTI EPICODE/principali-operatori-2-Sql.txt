@@ -1,0 +1,52 @@
+BETWEEN
+L'operatore `BETWEEN` seleziona valori all'interno di un intervallo dato. I valori possono essere numeri, testo o date. Sono inclusi i valori iniziale e finale dell'intervallo.
+
+Esempio Pratico:
+sql
+SELECT * FROM prodotti WHERE prezzo BETWEEN 10 AND 20;
+
+Questo seleziona tutti i prodotti con un prezzo compreso tra 10 e 20 (inclusi).
+
+IN
+L'operatore `IN` permette di specificare più valori in una clausola WHERE. È utile quando si vuole confrontare una colonna con più valori.
+
+Esempio Pratico 1:
+sql
+SELECT * FROM clienti WHERE città IN ('Roma', 'Milano', 'Napoli');
+
+Questo seleziona tutti i clienti che si trovano in una delle città elencate.
+
+Esempio Pratico 2 (Subquery):
+sql
+SELECT * FROM prodotti WHERE id_categoria IN (SELECT id FROM categorie WHERE nome = 'Elettronica');
+
+Questo seleziona tutti i prodotti la cui categoria corrisponde all'ID di quelle categorie il cui nome è 'Elettronica'.
+
+IS
+L'operatore `IS` viene utilizzato in SQL per confrontare valori NULL. `IS NULL` o `IS NOT NULL` possono essere usati per trovare valori NULL o per trovare valori che non sono NULL.
+
+Esempio Pratico:
+sql
+SELECT * FROM clienti WHERE indirizzo IS NULL;
+
+Questo comando seleziona tutti i clienti che non hanno un indirizzo.
+
+LIKE
+L'operatore `LIKE` è usato in una clausola WHERE per cercare un pattern specificato in una colonna.
+
+Esempio Pratico:
+sql
+SELECT * FROM clienti WHERE nome LIKE 'Gio%';
+
+Questo seleziona tutti i clienti il cui nome inizia con 'Gio'.
+
+Alias
+Gli alias SQL vengono utilizzati per dare una tabella o una colonna un nome temporaneo. Sono spesso usati per rendere i nomi delle colonne più leggibili.
+
+Esempio Pratico:
+sql
+SELECT nome AS nome_cliente FROM clienti;
+
+Questo comando seleziona la colonna `nome` dalla tabella `clienti`, ma la rinomina come `nome_cliente` nel set di risultati.
+
+Gli operatori SQL forniscono un modo potente per eseguire query precise e ben definite, consentendo agli sviluppatori di lavorare in modo più efficiente con i dati.

@@ -1,0 +1,18 @@
+Per creare utenti e assegnare permessi in PostgreSQL utilizzando pgAdmin, si seguono generalmente i seguenti passaggi:
+
+1. Creare un Nuovo Utente (Role):
+   - Apri pgAdmin e connettiti al server PostgreSQL desiderato.
+   - Clicca con il tasto destro su "Login/Group Roles" sotto "Server" > "Nome del tuo server" > "Database" > "Security".
+   - Seleziona "Create" > "Login/Group Role".
+   - Compila il nome dell'utente e altre opzioni come password, privilegi e validità nel form che appare.
+
+2. Assegnare Permessi:
+   - Una volta creato l'utente, è possibile assegnare permessi specifici.
+   - Clicca con il tasto destro sulla tabella o sul database a cui vuoi dare l'accesso.
+   - Seleziona "Properties", poi vai alla scheda "Security".
+   - Qui puoi aggiungere l'utente creato e assegnare i permessi come SELECT, INSERT, UPDATE, DELETE ecc.
+
+3. Salvare le Modifiche:
+   - Dopo aver assegnato i permessi, clicca "Save" per applicare le modifiche.
+
+Ricorda di consultare sempre la documentazione ufficiale per le procedure esatte e le migliori pratiche di sicurezza.

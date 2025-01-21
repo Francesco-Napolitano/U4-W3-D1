@@ -1,0 +1,80 @@
+In PostgreSQL, così come in altri linguaggi SQL, esistono vari operatori e clausole che permettono di manipolare e presentare i dati in modi utili. Ecco una spiegazione dettagliata di alcuni di questi operatori e clausole, insieme ad esempi pratici di quando e come applicarli.
+
+ORDER BY
+Questa clausola viene usata per ordinare il set di risultati di una query in base a una o più colonne. Puoi specificare se l'ordinamento deve essere ascendente (`ASC`) o discendente (`DESC`). Se non specificato, l'ordine predefinito è ascendente.
+
+Esempio Pratico:
+sql
+SELECT nome, età FROM persone ORDER BY età DESC, nome ASC;
+
+Questo ordina prima per `età` in ordine decrescente e poi per `nome` in ordine crescente.
+
+DISTINCT
+La clausola `DISTINCT` è utilizzata per rimuovere i duplicati dal set di risultati di una query.
+
+Esempio Pratico:
+sql
+SELECT DISTINCT città FROM indirizzi;
+
+Questo estrae una lista di città senza duplicati dalla tabella `indirizzi`.
+
+Operatori Aritmetici
+Gli operatori aritmetici come `COUNT`, `SUM`, `AVG`, `MIN`, e `MAX` sono utilizzati per eseguire calcoli sui set di dati.
+
+- `COUNT()`: conta il numero di righe.
+- `SUM()`: somma i valori di una colonna numerica.
+- `AVG()`: calcola la media dei valori di una colonna numerica.
+- `MIN()` e `MAX()`: trovano rispettivamente il valore minimo e massimo di una colonna.
+
+Esempio Pratico:
+sql
+SELECT COUNT(*), SUM(salario), AVG(salario), MIN(salario), MAX(salario) FROM impiegati;
+
+Questo comando conta tutti gli impiegati, somma i loro salari, calcola il salario medio, e trova il salario minimo e massimo.
+
+GROUP BY
+La clausola `GROUP BY` viene utilizzata per raggruppare le righe che hanno gli stessi valori in una o più colonne.
+
+Esempio Pratico:
+sql
+SELECT dipartimento, COUNT(*) FROM impiegati GROUP BY dipartimento;
+
+Questo comando conta quanti impiegati ci sono in ogni dipartimento.
+
+HAVING
+`HAVING` viene usato insieme a `GROUP BY` per filtrare i gruppi in base a una condizione.
+
+Esempio Pratico:
+sql
+SELECT dipartimento, COUNT(*) FROM impiegati GROUP BY dipartimento HAVING COUNT(*) > 10;
+
+Questo comando mostra solo i dipartimenti con più di 10 impiegati.
+
+JOIN
+`JOIN` viene usato per combinare righe da due o più tabelle basate su una relazione tra loro.
+
+Esempio Pratico:
+sql
+SELECT impiegati.nome, dipartimenti.nome FROM impiegati JOIN dipartimenti ON impiegati.dipartimento_id = dipartimenti.id;
+
+Questo comando mostra i nomi degli impiegati insieme ai nomi dei loro dipartimenti.
+
+UNION
+`UNION` è usato per combinare i set di risultati di due o più `SELECT` query. Ogni `SELECT` all'interno dell'`UNION` deve avere lo stesso numero di colonne e tipi di dati corrispondenti.
+
+Esempio Pratico:
+sql
+SELECT nome FROM impiegati UNION SELECT nome FROM clienti;
+
+Questo estrae i nomi unici sia dagli impiegati che dai clienti.
+
+WHERE
+`WHERE` viene utilizzato per filtrare i record in modo che solo quelli che soddisfano una condizione specifica vengano inclusi nel set di risultati.
+
+Esempio Pratico:
+sql
+SELECT * FROM ordini WHERE data_ordine > '2021-01-01';
+
+Questo comando estrae tutti gli ordini effettuati dopo il 1° gennaio 2021.
+
+Questi sono solo alcuni degli operatori e clausole disponibili in PostgreSQL. Ogni clausola ha uno scopo specifico e può essere utilizzata in combinazione con altre per eseguire query complesse e ottenere esattamente i dati che serv

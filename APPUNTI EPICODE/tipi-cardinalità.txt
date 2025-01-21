@@ -1,0 +1,65 @@
+Le cardinalità in un database relazionale come PostgreSQL descrivono come le righe di una tabella possono essere correlate con le righe di un'altra tabella. Esistono principalmente quattro tipi di relazioni (o cardinalità): uno-a-uno, uno-a-molti, molti-a-uno e molti-a-molti. Ecco una spiegazione di ciascuna con esempi e una tabella riassuntiva.
+
+1. Uno-a-Uno (One-to-One)
+
+Spiegazione: Ogni riga in una tabella è legata al massimo a una riga in un'altra tabella.
+
+Esempio: Un utente (`utenti`) ha al massimo un profilo (`profili`).
+
+sql
+CREATE TABLE utenti (
+    utente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100)
+);
+
+CREATE TABLE profili (
+    profilo_id SERIAL PRIMARY KEY,
+    utente_id INT UNIQUE REFERENCES utenti(utente_id),
+    bio TEXT
+);
+
+
+2. Uno-a-Molti (One-to-Many)
+
+Spiegazione: Una riga in una tabella può essere associata a molte righe in un'altra tabella.
+
+Esempio: Un utente (`utenti`) può pubblicare più post (`post`).
+
+sql
+CREATE TABLE post (
+    post_id SERIAL PRIMARY KEY,
+    titolo VARCHAR(100),
+    utente_id INT REFERENCES utenti(utente_id)
+);
+
+
+3. Molti-a-Uno (Many-to-One)
+
+Spiegazione: Molte righe in una tabella possono essere associate a una riga in un'altra tabella (è tecnicamente lo stesso di uno-a-molti, ma visto dalla prospettiva opposta).
+
+Esempio: Molti post (`post`) possono essere creati da un singolo utente (`utenti`).
+
+4. Molti-a-Molti (Many-to-Many)
+
+Spiegazione: Molte righe in una tabella possono essere associate a molte righe in un'altra tabella.
+
+Esempio: Gli studenti (`studenti`) possono iscriversi a molti corsi (`corsi`), e ciascun corso può avere molti studenti.
+
+sql
+CREATE TABLE studenti (
+    studente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100)
+);
+
+CREATE TABLE corsi (
+    corso_id SERIAL PRIMARY KEY,
+    nome_corso VARCHAR(100)
+);
+
+CREATE TABLE iscrizioni (
+    studente_id INT REFERENCES studenti(studente_id),
+    corso_id INT REFERENCES corsi(corso_id),
+    PRIMARY KEY (studente_id, corso_id)
+);
+
+Ricorda, la scelta della cardinalità dipende dalla natura della relazione che si sta cercando di rappresentare nel database. È importante progettare queste relazioni in modo accurato per mantenere l'integrità e la coerenza dei dati.

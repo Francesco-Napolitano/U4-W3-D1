@@ -1,0 +1,46 @@
+Nella creazione di chiavi primarie con incrementi automatici in PostgreSQL, ci sono due approcci principali: utilizzare una sequenza numerica autoincrementante (ad esempio, con il tipo `SERIAL`) o utilizzare un identificatore unico universale (UUID). Ecco degli esempi per entrambi i casi.
+
+1. Chiave Primaria con Incremento Automatico Numerico (SERIAL)
+
+Il tipo di dato `SERIAL` in PostgreSQL crea automaticamente una colonna numerica che si autoincrementa ogni volta che viene inserita una nuova riga.
+
+Esempio:
+
+sql
+CREATE TABLE utenti (
+    utente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    email VARCHAR(100)
+);
+
+
+In questo esempio, `utente_id` è una chiave primaria che viene incrementata automaticamente ogni volta che un nuovo utente viene aggiunto.
+
+2. Chiave Primaria con UUID
+UUID (Universal Unique Identifier) offre un modo per generare identificatori che sono unici non solo all'interno del database, ma potenzialmente in tutto il mondo. Per utilizzare gli UUID in PostgreSQL, è spesso necessario abilitare l'estensione `uuid-ossp`.
+
+Abilitare l'estensione UUID-OSSP:
+
+sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+
+Esempio di Creazione di Tabella con Chiave Primaria UUID:
+
+sql
+CREATE TABLE ordini (
+    ordine_id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    descrizione VARCHAR(255),
+    quantita INT
+);
+
+
+In questo esempio, `ordine_id` è una chiave primaria che utilizza UUID generati automaticamente. La funzione `uuid_generate_v4()` genera un UUID casuale versione 4.
+
+Note Importanti:
+
+- SERIAL vs UUID: Mentre `SERIAL` è più semplice e genera numeri più piccoli e più facili da leggere, gli UUID sono utili per garantire l'unicità attraverso diversi database e sistemi e sono particolarmente utili in architetture distribuite.
+- Prestazioni: Gli UUID possono essere leggermente meno performanti in termini di storage e di velocità di ricerca rispetto ai numeri interi, a causa della loro maggiore dimensione.
+- Compatibilità: Se si prevede di migrare il database o di integrarlo con altri sistemi, considerare quale opzione è più compatibile con i sistemi esterni.
+
+Questi esempi mostrano come impostare chiavi primarie autoincrementanti o basate su UUID in PostgreSQL, a seconda delle esigenze specifiche del tuo schema di database.

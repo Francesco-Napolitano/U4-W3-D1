@@ -1,0 +1,42 @@
+I dati geografici, spesso chiamati dati spaziali o geospaziali, si riferiscono a dati che sono associati a informazioni su posizioni fisiche e forme sulla terra. Questo tipo di dati è utilizzato per descrivere oggetti e fenomeni che hanno una posizione sulla superficie terrestre. I dati geografici sono ampiamente utilizzati in sistemi GIS (Geographic Information Systems), nella cartografia, nella pianificazione urbana, nella navigazione, e in molte altre applicazioni.
+
+PostgreSQL, con l'estensione PostGIS, è un esempio di sistema di gestione di database che supporta dati geografici. PostGIS estende le capacità di PostgreSQL, consentendo di gestire dati spaziali e di eseguire query complesse su di essi. 
+
+Esempio in PostgreSQL/PostGIS
+
+Immaginiamo di avere una tabella `luoghi` che memorizza posizioni di alcuni luoghi d'interesse. La tabella può avere un campo di tipo `geometry` o `geography` per memorizzare le coordinate geografiche di ogni luogo.
+
+1. Creazione della Tabella con Dati Geografici:
+
+   sql
+   CREATE EXTENSION postgis; -- Abilita PostGIS
+
+   CREATE TABLE luoghi (
+       id serial PRIMARY KEY,
+       nome varchar(128),
+       posizione geography(Point, 4326) -- tipo 'Point' con sistema di riferimento SRID 4326 (WGS 84)
+   );
+   
+
+2. Inserimento dei Dati:
+
+   sql
+   INSERT INTO luoghi (nome, posizione) 
+   VALUES ('Torre Eiffel', ST_GeomFromText('POINT(2.2945 48.8584)', 4326));
+   
+
+   Qui, `ST_GeomFromText` è una funzione che converte una stringa in un oggetto geografico, e `'POINT(2.2945 48.8584)'` rappresenta le coordinate della Torre Eiffel a Parigi.
+
+3. Esempio di Query:
+
+   Supponiamo di voler trovare tutti i luoghi entro 500 metri da un punto specifico. La query potrebbe essere simile a:
+
+   sql
+   SELECT nome 
+   FROM luoghi 
+   WHERE ST_Distance(posizione, ST_GeomFromText('POINT(2.295 48.857)', 4326)) < 500;
+   
+
+   Questa query utilizza `ST_Distance` per calcolare la distanza tra la posizione memorizzata e un punto specifico e restituisce i luoghi che sono entro 500 metri da quel punto.
+
+In questo esempio, abbiamo utilizzato il tipo di dati `geography`, adatto per coordinate globali e calcoli su larga scala. PostGIS fornisce anche il tipo `geometry`, che è ottimizzato per dati spaziali su una scala più piccola, come potrebbe essere necessario in una mappa di una città o di un parco.

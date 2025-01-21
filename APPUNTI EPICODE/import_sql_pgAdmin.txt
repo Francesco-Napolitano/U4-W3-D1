@@ -1,0 +1,13 @@
+Per importare un file .sql in pgAdmin e inserire gli insert in una tabella specifica, puoi seguire questa procedura didattica:
+
+1. Apri pgAdmin e Connettiti al Tuo Database: Avvia pgAdmin e stabilisci una connessione con il database in cui desideri importare i dati.
+
+2. Apri l'Editor di Query: Nel database connesso, apri una nuova finestra di query.
+
+3. Importa il File SQL: Vai al menu "File" e seleziona "Apri File" o usa il pulsante di scelta rapida per aprire il file. Sfoglia e seleziona il file .sql che contiene gli insert.
+
+4. Esegui il File SQL: Dopo aver aperto il file nell'editor di query, eseguilo cliccando sul pulsante "Esegui" o premendo `F5`. Questo eseguirà gli statement SQL nel file.
+
+5. Verifica i Risultati: Dopo l'esecuzione, verifica che i dati siano stati inseriti correttamente nel database eseguendo le query appropriate.
+
+Assicurati che il file .sql contenga gli statement SQL corretti e sia compatibile con la struttura del tuo database in pgAdmin. Questa procedura è generica e può variare leggermente a seconda della versione di pgAdmin che stai utilizzando.

@@ -1,0 +1,66 @@
+1. CREATE TABLE: Questo comando inizia la creazione di una nuova tabella nel database.
+
+2. automobile.motore: Indica il nome della tabella, `motore`, che si trova all'interno dello schema `automobile`.
+
+3. Colonne e Tipi di Dato:
+   - `id int8 NULL`: Una colonna denominata `id` che accetta numeri interi di grandi dimensioni (`bigint`) e può essere `NULL`.
+   - `matricola varchar NULL`: Una colonna denominata `matricola` che accetta stringhe di lunghezza variabile e può essere `NULL`.
+   - `cilindri int2 NULL`: Una colonna denominata `cilindri` che accetta numeri interi piccoli (`smallint`) e può essere `NULL`.
+   - `turbo bool NULL`: Una colonna di tipo booleano denominata `turbo` che può essere `NULL`.
+   - `alimentazione varchar NULL`: Una colonna denominata `alimentazione` che accetta stringhe di lunghezza variabile e può essere `NULL`.
+   - `idautomobile int8 NULL`: Una colonna denominata `idautomobile` che accetta numeri interi di grandi dimensioni (`bigint`) e può essere `NULL`.
+
+4. Vincoli (Constraints):
+   - `CONSTRAINT motore_pk PRIMARY KEY (id)`: Definisce un vincolo di chiave primaria (`PRIMARY KEY`) sulla colonna `id`. Questo significa che ogni valore in questa colonna deve essere unico e non `NULL`.
+   - `CONSTRAINT motore_fk FOREIGN KEY (idautomobile) REFERENCES automobile.automobile(id)`: Definisce un vincolo di chiave esterna (`FOREIGN KEY`) che collega la colonna `idautomobile` alla colonna `id` della tabella `automobile` nello schema `automobile`. Questo assicura che ogni valore in `idautomobile` corrisponda a un valore esistente in `id` della tabella `automobile`.
+
+Altri esempi di operatori e vincoli che possono essere utilizzati in `CREATE TABLE`:
+
+- CHECK: Impone una condizione che i valori in una colonna devono soddisfare.
+  sql
+  CREATE TABLE esempio (
+      valore int CHECK (valore > 0)
+  );
+  
+- UNIQUE: Assicura che tutti i valori in una colonna o un gruppo di colonne siano unici.
+  sql
+  CREATE TABLE esempio (
+      codice varchar UNIQUE
+  );
+  
+- NOT NULL: Specifica che una colonna non può avere valori `NULL`.
+  sql
+  CREATE TABLE esempio (
+      nome varchar NOT NULL
+  );
+  
+- DEFAULT: Assegna un valore predefinito a una colonna se non viene fornito alcun valore.
+  sql
+  CREATE TABLE esempio (
+      data_creazione TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  );
+  
+
+Questi sono solo alcuni esempi dei vincoli e degli operatori che si possono utilizzare nella creazione di una tabella in PostgreSQL. Ogni vincolo serve a garantire l'integrità dei dati e a imporre regole logiche sui dati inseriti nella tabella.
+
+Ulteriore approfondimento:
+In PostgreSQL, `int2`, `int4`, e `int8` sono formalismi che fanno riferimento ai tipi di dati interi che utilizzano rispettivamente 2, 4, e 8 byte di spazio di archiviazione. Questi termini sono utilizzati per specificare la dimensione del dato e il range di valori che il tipo di dato può contenere:
+
+- `int2`: Corrisponde al tipo `SMALLINT` e può contenere valori da -32,768 a +32,767.
+- `int4`: È sinonimo di `INTEGER` e può contenere valori da -2,147,483,648 a +2,147,483,647.
+- `int8`: Corrisponde al tipo `BIGINT` e può contenere valori da -9,223,372,036,854,775,808 a +9,223,372,036,854,775,807.
+
+Questi formalismi sono utilizzati per ottimizzare lo spazio di archiviazione e le prestazioni. Ad esempio, se si sa che un campo numerico conterrà valori piccoli, si può scegliere `int2` invece di `int4` o `int8` per risparmiare spazio di archiviazione e migliorare le prestazioni. Analogamente, si sceglierà `int8` quando è necessario gestire numeri molto grandi che superano il range di `int4`.
+
+Per una comprensione più approfondita dei tipi di dati e per informazioni su quando e perché utilizzare ciascun tipo, si può fare riferimento alla [documentazione ufficiale di PostgreSQL sui tipi di dati](https://www.postgresql.org/docs/current/datatype-numeric.html).
+
+COLLATE
+In PostgreSQL, la clausola `COLLATE` è utilizzata per specificare un set di regole per il confronto dei caratteri stringa, come l'ordinamento e la distinzione tra maiuscole e minuscole. Queste regole sono definite da un collation, che è una configurazione associata a una lingua o un insieme di lingue e alle relative convenzioni di ordinamento.
+
+Quando utilizzi `COLLATE` in una query, indichi a PostgreSQL come confrontare le stringhe in operazioni come il sorting o il matching di stringhe. Per esempio, puoi avere un collation che ordina le lettere accentate in un modo particolare o che considera alcune lettere uguali nonostante le differenze di maiuscole/minuscole o accenti.
+
+Esempio di utilizzo di `COLLATE` in una query:
+sql
+SELECT nome FROM utenti ORDER BY nome COLLATE "it_IT";
+
+Questa query ordinerà i risultati secondo il collation italiano, che determina come le lettere sono ordinate e comparate.

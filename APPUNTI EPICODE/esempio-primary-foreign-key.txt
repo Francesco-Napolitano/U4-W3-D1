@@ -1,0 +1,38 @@
+Le chiavi primarie (primary keys) e le chiavi secondarie (foreign keys) sono concetti fondamentali nel design dei database relazionali. Vediamo degli esempi utilizzando il SQL per PostgreSQL.
+
+Esempio di Chiave Primaria (Primary Key)
+
+Una chiave primaria è un campo o un insieme di campi che identificano univocamente ogni riga in una tabella. Di solito, si tratta di un ID numerico.
+Esempio: Creazione di una Tabella con una Chiave Primaria**
+
+Immaginiamo di avere una tabella `studenti` dove ogni studente ha un ID unico.
+
+sql
+CREATE TABLE studenti (
+    studente_id SERIAL PRIMARY KEY,
+    nome VARCHAR(100),
+    cognome VARCHAR(100),
+    data_nascita DATE
+);
+
+In questo esempio, `studente_id` è una chiave primaria. `SERIAL` è un tipo di dato in PostgreSQL che crea automaticamente un numero sequenziale univoco per ogni nuova riga inserita.
+
+Esempio di Chiave Secondaria (Foreign Key)
+
+Una chiave secondaria (foreign key) è un campo in una tabella che collega a una chiave primaria in un'altra tabella. È un modo per esprimere una relazione tra due tabelle.
+Esempio: Creazione di due Tabelle con una Chiave Secondaria**
+
+Supponiamo di avere una seconda tabella `corsi` che registra i corsi frequentati dagli studenti. Ogni corso è collegato a uno studente tramite `studente_id`.
+
+sql
+CREATE TABLE corsi (
+    corso_id SERIAL PRIMARY KEY,
+    nome_corso VARCHAR(100),
+    studente_id INT,
+    FOREIGN KEY (studente_id) REFERENCES studenti(studente_id)
+);
+
+
+In questo esempio, `corso_id` è la chiave primaria della tabella `corsi`. `studente_id` in `corsi` è una chiave secondaria che fa riferimento alla chiave primaria `studente_id` nella tabella `studenti`. Questo significa che ogni corso nella tabella `corsi` è associato a uno studente nella tabella `studenti`.
+
+L'uso di chiavi primarie e secondarie garantisce l'integrità dei dati e permette di creare relazioni significative all'interno del database.

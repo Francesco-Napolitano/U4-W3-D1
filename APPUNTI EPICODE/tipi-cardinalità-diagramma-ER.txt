@@ -1,0 +1,20 @@
+Nel contesto dei diagrammi Entità-Relazione (ER), la cardinalità è un concetto chiave che descrive il numero di entità a cui un'altra entità può essere associata tramite una relazione. Questo concetto è cruciale per definire il modo in cui le entità si interrelazionano tra loro. La cardinalità può essere espressa attraverso coppie di numeri, come nel tuo esempio (0, 4), che indicano il numero minimo e massimo di entità che possono partecipare alla relazione.
+
+Ecco una panoramica delle varie cardinalità nei diagrammi ER:
+
+1. 1:1 (Uno a Uno): Ogni entità in una relazione è associata a non più di un'altra entità. Per esempio, ogni persona ha un solo numero di previdenza sociale e ogni numero di previdenza sociale è associato a una sola persona.
+
+2. 1:N (Uno a Molti): Una singola entità può essere associata a molteplici entità nell'altra classe. Ad esempio, un genitore (1) può avere più figli (N), ma ogni figlio ha un solo genitore.
+
+3. N:1 (Molti a Uno): È l'inverso di 1:N. Molte entità in una classe sono associate a una singola entità nell'altra classe. Ad esempio, molti libri (N) possono essere pubblicati da una sola casa editrice (1).
+
+4. M:N (Molti a Molti): Entità in una classe possono essere associate a molteplici entità nell'altra classe e viceversa. Per esempio, uno studente può iscriversi a molti corsi e ogni corso può avere molti studenti iscritti.
+
+Riguardo alla tua specifica domanda sul significato della cardinalità (0, 4) in un diagramma ER:
+
+- Il numero 0 indica che la partecipazione alla relazione è opzionale. In altre parole, un'entità potrebbe non partecipare affatto alla relazione.
+- Il numero 4 indica che il numero massimo di entità a cui un'altra entità può essere associata tramite questa relazione è quattro.
+
+Per esempio, considera una relazione tra `Professori` e `Corsi`. Se la cardinalità fosse (0, 4), significherebbe che un professore potrebbe non insegnare alcun corso (0) o al massimo insegnare quattro corsi (4). 
+
+Queste regole di cardinalità aiutano a definire chiaramente le regole e le limitazioni delle relazioni in un modello di database.

@@ -1,0 +1,26 @@
+In PostgreSQL, `EXTRACT` e `USING` sono utilizzati per manipolare e interrogare dati relativi a date e ora.
+
+1. EXTRACT: Permette di estrarre specifiche parti da una data, un orario o un intervallo. Ad esempio, puoi estrarre l'anno, il mese, il giorno, l'ora, ecc.
+
+   - Esempio di `EXTRACT`:
+     sql
+     SELECT EXTRACT(YEAR FROM dataNascita) FROM Clienti;
+     
+     Questa query estrae l'anno dalla colonna `dataNascita` nella tabella `Clienti`.
+
+   - Altri esempi:
+     sql
+     SELECT EXTRACT(MONTH FROM dataNascita) FROM Clienti;  -- Estrae il mese
+     SELECT EXTRACT(DAY FROM dataNascita) FROM Clienti;    -- Estrae il giorno
+     
+
+2. USING: Meno comune e specifico, `USING` viene utilizzato in contesti come l'operatore `DELETE USING`, per specificare tabelle aggiuntive da cui eliminare i record.
+
+   - Esempio di `DELETE USING`:
+     sql
+     DELETE FROM Fatture USING Clienti
+     WHERE Fatture.idCliente = Clienti.numeroCliente AND Clienti.regioneResidenza = 'Lazio';
+     
+     Questa query elimina record dalla tabella `Fatture` basandosi su una condizione che coinvolge la tabella `Clienti`.
+
+`EXTRACT` è ampiamente usato per interrogazioni che richiedono dettagli specifici da date e orari, mentre `USING` trova applicazione in contesti più complessi dove è necessario fare riferimento a più tabelle in operazioni di cancellazione o aggiornamento.
